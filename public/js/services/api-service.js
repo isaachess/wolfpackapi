@@ -25,6 +25,10 @@ var apiService = function ($http) {
     this.getChildren = function () {
         return getData($http.get(childEndpoint))
     }
+    this.addChild = function (child) {
+        return $http.post(childEndpoint, child)
+    }
+
     this.getPlaydates = function () {
         return getData($http.get(playdateEndpoint))
     }
