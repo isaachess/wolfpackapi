@@ -1,40 +1,27 @@
+var response = require('../lib/serverResponse')
 var User = require('../models/User')
 
 module.exports.init = function(app) {
 
     app.post('/users', function(req, res) {
-        User.create(req.body, function(err, newUser) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            res.json(newUser)
-        })
+        User.create(req.body)
+        .then(function (newUser) {
+            return res.json(newUser)
+        }, response.serverError(res))
     })
 
-
     app.post('/users/:userId', function(req, res) {
-        User.update({_id: req.params.userId}, req.body, function(err) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-           res.json({ok: true})
-        })
+        User.update({_id: req.params.userId}, req.body)
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
     })
 
     app.get('/users', function(req, res) {
-        User.find({}, function(err, docs) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            return res.json(docs)
-        })
+        User.find({}).exec()
+        .then(function (users) {
+            return res.json(users)
+        }, response.serverError(res))
     })
-
 
 }
