@@ -41,4 +41,32 @@ app.get('/', function(req, res) {
     })
 })
 
+/* 
+Example for creating a User
+
+app.post('/users', function(req, res) {
+    User.create(req.body, function(err, newUser) {
+        if (err) {
+            console.log(err)
+            return res.json({ok: false}, 500)
+        }
+
+        res.json(newUser)
+    })
+})
+
+Example for updating a User
+
+app.post('/users/:userId', function(req, res) {
+    User.update({_id: req.params.userId}, req.body, function(err) {
+        if (err) {
+            console.log(err)
+            return res.json({ok: false}, 500)
+        }
+
+       res.json({ok: true})
+    })
+})
+*/
+
 app.listen(1337)    
