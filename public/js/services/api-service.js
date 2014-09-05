@@ -10,9 +10,18 @@ var apiService = function ($http) {
         return getData($http.get('/'))
     }
 
+    //USERS
     this.getUsers = function () {
         return getData($http.get(userEndpoint))
     }
+    this.addUser = function (user) {
+        return $http.post(userEndpoint, user)
+    }
+    this.updateUser = function(user) {
+        return $http.post(userEndpoint + "/" + user._id, user)
+    }
+
+
     this.getChildren = function () {
         return getData($http.get(childEndpoint))
     }

@@ -14,13 +14,53 @@
     <body>
         <section ng-controller="userControl">
             <header>Users</header>
+            
             <section>
-                <article>asdf{{users.length}}</article>
-                <article>{{database}}</article>
+                <header>Add User</header>
+                <table>
+                    <tr>
+                        <td><label>phone</label></td><td><input ng-model="phone"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>firstName</label></td><td><input ng-model="firstName"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>lastName</label></td><td><input ng-model="lastName"/></td>
+                    </tr>
+                </table>
+                <div><button ng-click="addUser(phone, firstName, lastName)">Add!</button></div>
+            </section>
+            
+            <section>
+                <article ng-repeat="user in users">
+                    <section ng-hide="editMode">
+                        <br>
+                        <div>{{user.firstName}} {{user.lastName}}</div>
+                        <div>{{user._id}}</div>
+                        <div>{{user.phone}}</div>
+                        <div><button ng-click="editMode = !editMode">Edit</button></div>
+                    </section>
+                    <section ng-show="editMode">
+                        <table>
+                            <tr>
+                                <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
+                            </tr>
+                            <tr>
+                                <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
+                            </tr>
+                            <tr>
+                                <td><label>_id</label></td><td><input ng-model="user._id"/></td>
+                            </tr>
+                            <tr>
+                                <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
+                            </tr>
+                        </table>
+                        <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
+                    </section>
+                </article>
             </section>
 
         </section>
-        asdf
 
     </body>
 </html>
