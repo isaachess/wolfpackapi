@@ -14,7 +14,7 @@
     <body>
         <section ng-controller="userControl">
             <section>
-                <a ng-click="page = 'users'">Users</a><a ng-click="page = 'children'">Children</a>
+                <a ng-click="page = 'users'">Users</a> <a ng-click="page = 'children'">Children</a>
             </section>
 
             <section ng-show="page == 'users'">
@@ -83,7 +83,7 @@
                             <td><label>parentId</label></td><td>
                                 <div ng-repeat="user in users">
                                     <input id="parentId{{$index}}" name="parentI" ng-model="$parent.childParentId" ng-value="user._id" type="radio"/>
-                                    <label for="parentId{{$index}}">{{user._id}}</label>
+                                    <label for="parentId{{$index}}">{{user.firstName}} {{user.lastName}} {{user._id}}</label>
                                 </div>
                             </td>
                         </tr>
@@ -96,7 +96,38 @@
                     </table>
                     <div><button ng-click="addChild(childParentId, childFirstName, childLastName)">Add!</button></div>
                 </section>
-                {{children}}
+                <section>
+                    <article ng-repeat="child in children">
+                    <!-- <section ng-hide="editMode">
+                            <br>
+                            <div ng-repeat="(key, value) in child">{{value}}</div>
+
+                            <div><button ng-click="editMode = !editMode">Edit</button></div>
+                        </section>
+                        <section ng-show="editMode">
+                            <table>
+                                <tr>
+                                    <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label>_id</label></td><td><input ng-model="user._id"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
+                                </tr>
+                            </table>
+
+                            <table>
+                                <tr ng-repeat="(key, value) in user">
+                                    <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
+                                </tr>
+                            </table> -->
+                    </article>
+                </section>
+
             </section>
 
         </section>
