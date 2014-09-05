@@ -25,4 +25,15 @@ module.exports.init = function(app) {
         })
     })
 
+    app.get('/playdates', function(req, res) {
+        PlayDate.find({}, function(err, docs) {
+            if (err) {
+                console.log(err)
+                return res.json({ok: false}, 500)
+            }
+
+            return res.json(docs)
+        })
+    })
+
 }

@@ -25,4 +25,16 @@ module.exports.init = function(app) {
         })
     })
 
+    app.get('/users', function(req, res) {
+        User.find({}, function(err, docs) {
+            if (err) {
+                console.log(err)
+                return res.json({ok: false}, 500)
+            }
+
+            return res.json(docs)
+        })
+    })
+
+
 }
