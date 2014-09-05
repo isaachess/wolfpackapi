@@ -3,39 +3,24 @@ var Invitation = require('../models/Invitation')
 module.exports.init = function(app) {
 
     app.post('/invitations', function(req, res) {
-        Invitation.create(req.body, function(err, newInvitation) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            res.json(newInvitation)
-        })
+        Invitation.create(req.body)
+        .then(function (newInvitation) {
+            return res.json(newInvitation)
+        }, response.serverError(res))
     })
 
-
-    app.post('/invitations/:inviteId', function(req, res) {
-        Invitation.update({_id: req.params.inviteId}, req.body, function(err) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-           res.json({ok: true})
-        })
+    app.post('/invitations/:id', function(req, res) {
+        Invitation.update({_id: req.params.id}, req.body)
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
     })
 
     app.get('/invitations', function(req, res) {
-        Invitation.find({}, function(err, docs) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            return res.json(docs)
-        })
+        Invitation.find({}).exec()
+        .then(function (invitations) {
+            return res.json(invitations)
+        }, response.serverError(res))
     })
 
 }
-
-

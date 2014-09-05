@@ -1,40 +1,26 @@
+var response = require('../lib/serverResponse')
 var Child = require('../models/Child')
 
 module.exports.init = function(app) {
 
     app.post('/children', function(req, res) {
-        Child.create(req.body, function(err, newChild) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            res.json(newChild)
-        })
+        Child.create(req.body)
+        .then(function (newChild) {
+            return res.json(newChild)
+        }, response.serverError(res))
     })
 
-
-    app.post('/children/:childId', function(req, res) {
-        Child.update({_id: req.params.childId}, req.body, function(err) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-           res.json({ok: true})
-        })
+    app.post('/children/:id', function(req, res) {
+        Child.update({_id: req.params.id}, req.body)
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
     })
 
     app.get('/children', function(req, res) {
-        Child.find({}, function(err, docs) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            return res.json(docs)
-        })
+        Child.find({}).exec()
+        .then(function (children) {
+            return res.json(children)
+        }, response.serverError(res))
     })
-
 }
-
