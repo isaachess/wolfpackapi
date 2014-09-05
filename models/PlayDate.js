@@ -15,6 +15,10 @@ var PlayDateSchema = new Schema({
     location: {
         type: [String],
         required: true
+    },
+
+    deleted: {
+        type: Boolean
     }
 })
 

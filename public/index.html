@@ -60,7 +60,7 @@
 
                         <table>
                             <tr ng-repeat="(key, value) in user">
-                                <td><label>{{key}}</label></td><td><input ng-model="value"/></td>
+                                <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
                             </tr>
                         </table>
                         <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>

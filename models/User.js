@@ -17,6 +17,10 @@ var UserSchema = new Schema({
     lastName: {
         type: String,
         required: true
+    },
+
+    deleted: {
+        type: Boolean
     }
 })
 
