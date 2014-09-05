@@ -7,6 +7,8 @@ var UserSchema = new Schema({
         required: true
     },
 
+    imageUrl: String,
+
     friends: [Schema.Types.ObjectId],
 
     firstName: {
