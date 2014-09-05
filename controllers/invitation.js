@@ -1,3 +1,4 @@
+var response = require('../lib/serverResponse')
 var Invitation = require('../models/Invitation')
 
 module.exports.init = function(app) {
@@ -10,7 +11,7 @@ module.exports.init = function(app) {
     })
 
     app.post('/invitations/:id', function(req, res) {
-        Invitation.update({_id: req.params.id}, req.body)
+        Invitation.update({_id: req.params.id}, req.body).exec()
         .then(function() {
             return res.json({ok: true})
         }, response.serverError(res))

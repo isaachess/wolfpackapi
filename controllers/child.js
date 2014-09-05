@@ -11,7 +11,7 @@ module.exports.init = function(app) {
     })
 
     app.post('/children/:id', function(req, res) {
-        Child.update({_id: req.params.id}, req.body)
+        Child.update({_id: req.params.id}, req.body).exec()
         .then(function() {
             return res.json({ok: true})
         }, response.serverError(res))

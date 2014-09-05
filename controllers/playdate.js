@@ -1,3 +1,4 @@
+var response = require('../lib/serverResponse')
 var PlayDate = require('../models/PlayDate')
 
 module.exports.init = function(app) {
@@ -10,7 +11,7 @@ module.exports.init = function(app) {
     })
 
     app.post('/playdates/:id', function(req, res) {
-        PlayDate.update({_id: req.params.id}, req.body)
+        PlayDate.update({_id: req.params.id}, req.body).exec()
         .then(function() {
             return res.json({ok: true})
         }, response.serverError(res))

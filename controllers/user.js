@@ -10,8 +10,8 @@ module.exports.init = function(app) {
         }, response.serverError(res))
     })
 
-    app.post('/users/:userId', function(req, res) {
-        User.update({_id: req.params.userId}, req.body)
+    app.post('/users/:id', function(req, res) {
+        User.update({_id: req.params.id}, req.body).exec()
         .then(function() {
             return res.json({ok: true})
         }, response.serverError(res))
