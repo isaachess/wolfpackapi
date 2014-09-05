@@ -35,13 +35,15 @@
                 <article ng-repeat="user in users">
                     <section ng-hide="editMode">
                         <br>
-                        <div>{{user.firstName}} {{user.lastName}}</div>
+                        <div ng-repeat="(key, value) in user">{{value}}</div>
+
+                      <!--    <div>{{user.firstName}} {{user.lastName}}</div>
                         <div>{{user._id}}</div>
-                        <div>{{user.phone}}</div>
+                        <div>{{user.phone}}</div> -->
                         <div><button ng-click="editMode = !editMode">Edit</button></div>
                     </section>
                     <section ng-show="editMode">
-                        <table>
+                       <!--  <table>
                             <tr>
                                 <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
                             </tr>
@@ -53,6 +55,12 @@
                             </tr>
                             <tr>
                                 <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
+                            </tr>
+                        </table> -->
+
+                        <table>
+                            <tr ng-repeat="(key, value) in user">
+                                <td><label>{{key}}</label></td><td><input ng-model="value"/></td>
                             </tr>
                         </table>
                         <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
