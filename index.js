@@ -17,6 +17,9 @@ var Invitation = require('./models/Invitation')
 
 app.use(bodyParser.json())
 
+app.use('/admin', express.static(__dirname + '/public'))
+
+
 app.get('/', function(req, res) {
     async.parallel({
         users: function(done) {
