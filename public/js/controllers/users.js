@@ -17,10 +17,18 @@ var userControl = function ($scope, apiService) {
         return apiService.updateUser(user)
     }
 
+    $scope.notDeleted = function (user) {
+        return !user.deleted
+    }
+
+
+    $scope.addChild = function () {
+        return apiService.addChild(child)
+    }
+
     apiService.getDatabase().then(function(db) {$scope.database = db})
 
     apiService.getUsers().then(function(users) {$scope.users = users})
 
-
-
 }
+
