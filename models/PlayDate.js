@@ -8,7 +8,7 @@ var PlayDateSchema = new Schema({
     },
 
     ownerId: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     },
 

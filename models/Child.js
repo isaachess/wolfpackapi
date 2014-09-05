@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 
 var ChildSchema = new Schema({
     parentId: {
-        type: String,
+        type: Schema.types.ObjectId,
         required: true
     },
 

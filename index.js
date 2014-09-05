@@ -1,6 +1,7 @@
 var q = require('q')
 var async = require('async')
 var express = require('express')
+var expressConductor = require('express-conductor')
 var app = express()
 var bodyParser = require('body-parser')
 var connection
@@ -9,7 +10,6 @@ var MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017'
 var mongoose = require('mongoose')
 mongoose.connect(MONGO_URL)
 
-//Models what's up
 var User = require('./models/User')
 var Child = require('./models/Child')
 var PlayDate = require('./models/PlayDate')
@@ -41,32 +41,6 @@ app.get('/', function(req, res) {
     })
 })
 
-/* 
-Example for creating a User
-
-app.post('/users', function(req, res) {
-    User.create(req.body, function(err, newUser) {
-        if (err) {
-            console.log(err)
-            return res.json({ok: false}, 500)
-        }
-
-        res.json(newUser)
-    })
+expressConductor.init(app, {controllers: __dirname + '/controllers'}, function(err, app) {
+    app.listen(process.env.$PORT || 1337)
 })
-
-Example for updating a User
-
-app.post('/users/:userId', function(req, res) {
-    User.update({_id: req.params.userId}, req.body, function(err) {
-        if (err) {
-            console.log(err)
-            return res.json({ok: false}, 500)
-        }
-
-       res.json({ok: true})
-    })
-})
-*/
-
-app.listen(1337)    

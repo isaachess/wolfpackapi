@@ -7,7 +7,7 @@ var UserSchema = new Schema({
         required: true
     },
 
-    friends: [String],
+    friends: [Schema.Types.ObjectId],
 
     firstName: {
         type: String,

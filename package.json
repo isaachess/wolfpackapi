@@ -22,6 +22,7 @@
     "q": "^1.0.1",
     "mongodb": "^1.4.10",
     "mongoose": "^3.8.15",
-    "async": "^0.9.0"
+    "async": "^0.9.0",
+    "express-conductor": "^2.0.3"
   }
 }

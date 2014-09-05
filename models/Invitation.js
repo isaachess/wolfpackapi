@@ -4,7 +4,7 @@ var Schema = mongoose.Schema
 var InvitationSchema = new Schema({
     childId: {
         required: true,
-        type: String
+        type: Schema.Types.ObjectId
     },
 
     confirmed: {
@@ -14,7 +14,7 @@ var InvitationSchema = new Schema({
     },
 
     playDateId: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     }
 })
