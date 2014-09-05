@@ -1,39 +1,27 @@
+var response = require('../lib/serverResponse')
 var PlayDate = require('../models/PlayDate')
 
 module.exports.init = function(app) {
 
     app.post('/playdates', function(req, res) {
-        PlayDate.create(req.body, function(err, newPlayDate) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            res.json(newPlayDate)
-        })
+        PlayDate.create(req.body)
+        .then(function (newPlayDate) {
+            return res.json(newPlayDate)
+        }, response.serverError(res))
     })
 
-
-    app.post('/playdates/:playdateId', function(req, res) {
-        PlayDate.update({_id: req.params.playdateId}, req.body, function(err) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-           res.json({ok: true})
-        })
+    app.post('/playdates/:id', function(req, res) {
+        PlayDate.update({_id: req.params.id}, req.body).exec()
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
     })
 
     app.get('/playdates', function(req, res) {
-        PlayDate.find({}, function(err, docs) {
-            if (err) {
-                console.log(err)
-                return res.json({ok: false}, 500)
-            }
-
-            return res.json(docs)
-        })
+        PlayDate.find({}).exec()
+        .then(function (playdates) {
+            return res.json(playdates)
+        }, response.serverError(res))
     })
 
 }

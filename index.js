@@ -16,29 +16,22 @@ var PlayDate = require('./models/PlayDate')
 var Invitation = require('./models/Invitation')
 
 app.use(bodyParser.json())
-
 app.use('/admin', express.static(__dirname + '/public'))
 
-
-app.get('/', function(req, res) {
-    async.parallel({
-        users: function(done) {
-            User.find({}, done)
-        },
-        children: function(done) {
-            Child.find({}, done)
-        },
-        playDates: function(done) {
-            PlayDate.find({}, done)
-        },
-        invitations: function(done) {
-            Invitation.find({}, done)
-        }
-    }, function(err, results) {
-        if (err) {
-            console.log(err)
-            return res.json({ok: false}, 500)
-        }
+app.get('/', function (req, res) {
+    return q.all([
+        User.find({}).exec(),
+        Child.find({}).exec(),
+        PlayDate.find({}).exec(),
+        Invitation.find({}).exec()
+    ])
+    .spread(function (users, children, playDates, invitations) {
+        var results = ({
+            users: users,
+            children: children,
+            playDates: playDates,
+            invitations: invitations
+        })
 
         res.json(results)
     })
@@ -50,8 +43,3 @@ require('./controllers/playdate').init(app)
 require('./controllers/invitation').init(app)
 
 app.listen(process.env.PORT || 1337)
-
-
-// expressConductor.init(app, {controllers: __dirname + '/controllers'}, function(err, app) {
-//     app.listen(process.env.PORT || 1337)
-// })
