@@ -6,7 +6,6 @@ var express = require('express')
 var expressConductor = require('express-conductor')
 var app = express()
 var bodyParser = require('body-parser')
-var multiparty = require('connect-multiparty')
 var knox = require('knox')
 var client = knox.createClient({
     key: process.env.AWS_ACCESS_KEY_ID,
@@ -22,24 +21,6 @@ var User = require('./models/User')
 var Child = require('./models/Child')
 var PlayDate = require('./models/PlayDate')
 var Invitation = require('./models/Invitation')
-
-app.post('/users/:userId/image', multiparty(), function(req, res) {
-    var file = req.files.image
-
-    client.putFile(file.path, file.originalFilename, { 'x-amz-acl': 'public-read' }, function(err, resp) {
-        var url = resp.req.url
-
-        User.update({_id: req.params.userId}, {$set: {imageUrl: url}}).exec()
-        .then(function() {
-            res.json({ok: true, url: url})
-        }, response.serverError(res))
-    })
-
-})
-
-app.post('/children/:childId/image', multiparty(), function(req, res) {
-
-})
 
 app.use(bodyParser.json())
 app.use('/admin', express.static(__dirname + '/public'))

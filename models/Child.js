@@ -7,6 +7,8 @@ var ChildSchema = new Schema({
         required: true
     },
 
+    imageUrl: String,
+
     firstName: {
         type: String,
         required: true
