@@ -16,6 +16,10 @@ var InvitationSchema = new Schema({
     playDateId: {
         type: Schema.Types.ObjectId,
         required: true
+    },
+
+    deleted: {
+        type: Boolean
     }
 })
 
