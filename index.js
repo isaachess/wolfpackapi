@@ -44,6 +44,14 @@ app.get('/', function(req, res) {
     })
 })
 
-expressConductor.init(app, {controllers: __dirname + '/controllers'}, function(err, app) {
-    app.listen(process.env.$PORT || 1337)
-})
+require('./controllers/user').init(app)
+require('./controllers/child').init(app)
+require('./controllers/playdate').init(app)
+require('./controllers/invitation').init(app)
+
+app.listen(process.env.PORT || 1337)
+
+
+// expressConductor.init(app, {controllers: __dirname + '/controllers'}, function(err, app) {
+//     app.listen(process.env.PORT || 1337)
+// })

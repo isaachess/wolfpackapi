@@ -25,5 +25,16 @@ module.exports.init = function(app) {
         })
     })
 
+    app.get('/children', function(req, res) {
+        Child.find({}, function(err, docs) {
+            if (err) {
+                console.log(err)
+                return res.json({ok: false}, 500)
+            }
+
+            return res.json(docs)
+        })
+    })
+
 }
 

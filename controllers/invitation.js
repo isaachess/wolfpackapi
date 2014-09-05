@@ -2,7 +2,7 @@ var Invitation = require('../models/Invitation')
 
 module.exports.init = function(app) {
 
-    app.post('/children', function(req, res) {
+    app.post('/invitations', function(req, res) {
         Invitation.create(req.body, function(err, newInvitation) {
             if (err) {
                 console.log(err)
@@ -14,14 +14,25 @@ module.exports.init = function(app) {
     })
 
 
-    app.post('/children/:childId', function(req, res) {
-        Invitation.update({_id: req.params.childId}, req.body, function(err) {
+    app.post('/invitations/:inviteId', function(req, res) {
+        Invitation.update({_id: req.params.inviteId}, req.body, function(err) {
             if (err) {
                 console.log(err)
                 return res.json({ok: false}, 500)
             }
 
            res.json({ok: true})
+        })
+    })
+
+    app.get('/invitations', function(req, res) {
+        Invitation.find({}, function(err, docs) {
+            if (err) {
+                console.log(err)
+                return res.json({ok: false}, 500)
+            }
+
+            return res.json(docs)
         })
     })
 
