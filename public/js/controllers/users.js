@@ -1,6 +1,7 @@
 var userControl = function ($scope, apiService) {
 
     $scope.stuff = "more stuff"
+    $scope.page = "users"
     $scope.database;
     $scope.users;
     $scope.children;
