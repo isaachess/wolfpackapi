@@ -13,7 +13,7 @@ var PlayDateSchema = new Schema({
     },
 
     location: {
-        type: String,
+        type: [String],
         required: true
     }
 })
