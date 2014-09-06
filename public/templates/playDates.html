@@ -1,4 +1,40 @@
 <section>
+    <h1>Playdates</h1>
+
+    <section>
+        <h3>Add Playdate</h3>
+        <table>
+            <tr>
+                <td><label>ownerId</label></td><td>
+                    <div ng-repeat="user in users">
+                        <input id="userId{{$index}}" name="userId" ng-model="$parent.ownerId" ng-value="user._id" type="radio"/>
+                        <label for="userId{{$index}}">{{user.firstName}} {{user.lastName}} {{user._id}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>playdate</label></td><td>
+                    <div ng-repeat="playdate in playdates">
+                        <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
+                        <label for="playdate{{$index}}">{{playdate}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>confirmed</label></td><td><input ng-model="confirmed" type="checkbox"/></td>
+            </tr>
+        </table>
+        <div><button ng-click="addPlaydate(childId, playdateId, confirmed)">Add</button></div>
+
+    </section>
+    <section>
+        <div>{{invitation}}</div>
+        <div><button ng-click="deletePlaydate(invitation)">Delete</button></div>   
+    </section>
+
+
+
+
     <article ng-repeat="playdate in playdates">
         <div>ID: {{playdate._id}}</div>
         <div>Owner ID: {{playdate.ownerId}}</div>

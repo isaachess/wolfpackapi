@@ -18,5 +18,6 @@ var playDatesCtrl = function($scope, apiService) {
     }
 
     apiService.getPlaydates().then(function(playdates) {$scope.playdates = playdates})
+    apiService.getUsers().then(function(users) {$scope.users = users})
 
 }

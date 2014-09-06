@@ -4,6 +4,10 @@
     <section>
         <h3>Add Invitation</h3>
         <table>
+
+            <tr>
+                <td><label>date</label></td><td>{{date}}</td>
+            </tr>
             <tr>
                 <td><label>childId</label></td><td>
                     <div ng-repeat="child in children">
@@ -13,18 +17,10 @@
                 </td>
             </tr>
             <tr>
-                <td><label>playdate</label></td><td>
-                    <div ng-repeat="playdate in playdates">
-                        <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
-                        <label for="playdate{{$index}}">{{playdate}}</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td><label>confirmed</label></td><td><input ng-model="confirmed" type="checkbox"/></td>
+                <td><label>location</label></td><td>{{location}}</td>
             </tr>
         </table>
-        <div><button ng-click="addInvitation(childId, playdateId, confirmed)">Add</button></div>
+        <div><button ng-click="addInvitation(date, ownerId, location)">Add</button></div>
 
     </section>
     <section>
