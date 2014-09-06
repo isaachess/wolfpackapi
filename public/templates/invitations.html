@@ -16,7 +16,7 @@
                 <td><label>playdateId</label></td><td>
                     <div ng-repeat="playdate in playdates">
                         <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
-                        <label for="playdate{{$index}}">{{playdate}}</label>
+                        <label for="playdate{{$index}}">{{playdate.ownerId | userName:users}} {{playdate._id}}</label>
                     </div>
                 </td>
             </tr>
