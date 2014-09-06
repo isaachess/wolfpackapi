@@ -28,6 +28,6 @@ app.filter('userName', function() {
         })
         var index = ids.indexOf(id)
         var user = users[index]
-        return user.firstName + user.lastName
+        return user.firstName +' '+ user.lastName
     }
 })
