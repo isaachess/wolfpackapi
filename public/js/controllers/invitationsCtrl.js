@@ -10,8 +10,12 @@ var invitationsCtrl = function($scope, apiService) {
         return apiService.addInvitation(invitation)
 
     }
-    $scope.updateInvitation = function (playdate) {
+    $scope.updateInvitation = function (invitation) {
         return apiService.updateInvitation(invitation)
+    }
+
+    $scope.deleteInvitation = function (invitation) {
+        return apiService.deleteInvitation(invitation)
     }
 
     // FILTERS 

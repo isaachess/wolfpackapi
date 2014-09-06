@@ -13,6 +13,9 @@ var playDatesCtrl = function($scope, apiService) {
     $scope.updatePlaydate = function (playdate) {
         return apiService.updatePlaydate(playdate)
     }
+    $scope.deletePlaydate = function (playdate) {
+        return apiService.deletePlaydate(playdate)
+    }
 
     apiService.getPlaydates().then(function(playdates) {$scope.playdates = playdates})
 

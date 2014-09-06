@@ -27,6 +27,13 @@ module.exports.init = function(app) {
         }, response.serverError(res))
     })
 
+    app.del('/users/:id', function(req, res) {
+        User.remove({_id: req.params.id}).exec()
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
+    })
+
     app.post('/users/:id/image', multiparty(), function(req, res) {
         var file = req.files.image
 
