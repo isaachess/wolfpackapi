@@ -13,10 +13,10 @@ module.exports.init = function(app) {
 
         if (to.match(twilioNumber)) {
             getLastConvo(from, function(err, to) {
-                Message.createMessage(to, from, body)
+                Message.sendMessage(to, from, body)
             })
         } else {
-            Message.createMessage(to, from, body)
+            Message.sendMessage(to, from, body)
         }
 
     })
