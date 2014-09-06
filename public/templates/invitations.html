@@ -4,10 +4,6 @@
     <section>
         <h3>Add Invitation</h3>
         <table>
-
-            <tr>
-                <td><label>date</label></td><td>{{date}}</td>
-            </tr>
             <tr>
                 <td><label>childId</label></td><td>
                     <div ng-repeat="child in children">
@@ -17,10 +13,38 @@
                 </td>
             </tr>
             <tr>
-                <td><label>location</label></td><td>{{location}}</td>
+                <td><label>playdateId</label></td><td>
+                    <div ng-repeat="playdate in playdates">
+                        <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
+                        <label for="playdate{{$index}}">{{playdate}}</label>
+                    </div>
+                </td>
             </tr>
+            <tr>
+                <td><label>confirmed</label></td>
+                <td>
+                    <div>
+                        <input id="confirmed0" name="confirmed" ng-model="$parent.confirmed" value="Invited" type="radio"/>
+                        <label for="confirmed0">Invited</label>
+                    </div>
+                    <div>
+                        <input id="confirmed1" name="confirmed" ng-model="$parent.confirmed" value="Accepted" type="radio"/>
+                        <label for="confirmed1">Accepted</label>
+                    </div>
+                    <div>
+                        <input id="confirmed2" name="confirmed" ng-model="$parent.confirmed" value="Arrived" type="radio"/>
+                        <label for="confirmed2">Arrived</label>
+                    </div>
+                    <div>
+                        <input id="confirmed3" name="confirmed" ng-model="$parent.confirmed" value="Declined" type="radio"/>
+                        <label for="confirmed3">Declined</label>
+                    </div>
+                </td>
+            </tr>
+
         </table>
-        <div><button ng-click="addInvitation(date, ownerId, location)">Add</button></div>
+        <div><button ng-click="addInvitation(childId, playdateId, confirmed)">Add</button></div>
+
 
     </section>
     <section>

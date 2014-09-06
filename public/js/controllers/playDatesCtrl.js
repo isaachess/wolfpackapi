@@ -1,5 +1,7 @@
 var playDatesCtrl = function($scope, apiService) {
 
+    $scope.date = "now"
+    $scope.location = "my house"
     // PLAYDATES
     $scope.addPlaydate = function (date, ownerId, location) {
         var playdate = {
