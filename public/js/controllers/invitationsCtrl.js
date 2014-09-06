@@ -25,5 +25,7 @@ var invitationsCtrl = function($scope, apiService) {
 
 
     apiService.getInvitations().then(function(invitations) {$scope.invitations = invitations})
+    apiService.getChildren().then(function(children) {$scope.children = children})
+    apiService.getPlaydates().then(function(playdates) {$scope.playdates = playdates})
 
 }

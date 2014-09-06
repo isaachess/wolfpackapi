@@ -10,7 +10,7 @@ var InvitationSchema = new Schema({
     confirmed: {
         required: true,
         type: String,
-        enum: ['confirmed', 'rejected', 'invited']
+        enum: ['Invited', 'Accepted', 'Arrived', 'Declined']
     },
 
     playDateId: {

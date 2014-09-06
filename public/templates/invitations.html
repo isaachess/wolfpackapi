@@ -1,8 +1,54 @@
 <section>
-    <article ng-repeat="invitation in invitations">
-        <div>{{invitation}}</div>
-        <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>
-        
-    </article>
+    <h1>Invitations</h1>
 
+    <section>
+        <h3>Add Invitation</h3>
+        <table>
+            <tr>
+                <td><label>childId</label></td><td>
+                    <div ng-repeat="child in children">
+                        <input id="childId{{$index}}" name="childId" ng-model="$parent.childId" ng-value="child._id" type="radio"/>
+                        <label for="childId{{$index}}">{{child.firstName}} {{child.lastName}} {{child._id}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>playdateId</label></td><td>
+                    <div ng-repeat="playdate in playdates">
+                        <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
+                        <label for="playdate{{$index}}">{{playdate}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>confirmed</label></td>
+                <td>
+                    <div>
+                        <input id="confirmed0" name="confirmed" ng-model="$parent.confirmed" value="Invited" type="radio"/>
+                        <label for="confirmed0">Invited</label>
+                    </div>
+                    <div>
+                        <input id="confirmed1" name="confirmed" ng-model="$parent.confirmed" value="Accepted" type="radio"/>
+                        <label for="confirmed1">Accepted</label>
+                    </div>
+                    <div>
+                        <input id="confirmed2" name="confirmed" ng-model="$parent.confirmed" value="Arrived" type="radio"/>
+                        <label for="confirmed2">Arrived</label>
+                    </div>
+                    <div>
+                        <input id="confirmed3" name="confirmed" ng-model="$parent.confirmed" value="Declined" type="radio"/>
+                        <label for="confirmed3">Declined</label>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+        <div><button ng-click="addInvitation(childId, playdateId, confirmed)">Add</button></div>
+
+
+    </section>
+    <section>
+        <div>{{invitation}}</div>
+        <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>   
+    </section>
 </section>
