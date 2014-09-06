@@ -31,16 +31,37 @@ var userControl = function ($scope, apiService) {
         }
         return apiService.addChild(child)
     }
-
     $scope.updateChild = function (child) {
         return apiService.updateChild(child)
     }
 
     // PLAYDATES
+    $scope.addPlaydate = function (date, ownerId, location) {
+        var playdate = {
+            date: date,
+            ownerId: ownerId,
+            location: location
+        }
+        return apiService.addPlaydate(playdate)
 
+    }
+    $scope.updatePlaydate = function (playdate) {
+        return apiService.updatePlaydate(playdate)
+    }
 
     // INVITATIONS
+    $scope.addInvitation = function (childId, playdateId, confirmed) {
+        var invitation = {
+            childId: childId
+            playdateId: playdateId
+            confirmed: confirmed
+        }
+        return apiService.addInvitation(invitation)
 
+    }
+    $scope.updateInvitation = function (playdate) {
+        return apiService.updateInvitation(invitation)
+    }
 
     // FILTERS 
     $scope.notDeleted = function (object) {
