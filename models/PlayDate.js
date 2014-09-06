@@ -3,7 +3,7 @@ var Schema = mongoose.Schema
 
 var PlayDateSchema = new Schema({
     date: {
-        type: Date,
+        type: String,
         required: true
     },
 

@@ -20,7 +20,6 @@
         <article ng-repeat="user in users | filter:notDeleted">
             <section ng-hide="editMode">
                 <br>
-                <!-- <div ng-repeat="(key, value) in user">{{value}}</div> -->
                 <div><img ng-src="{{user.imageUrl}}" /></div>
                 <div>{{user.firstName}} {{user.lastName}}</div>
                 <div>{{user._id}}</div>
@@ -45,14 +44,9 @@
                         <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
                     </tr>
                 </table>
-
-<!--                 <table>
-                    <tr ng-repeat="(key, value) in user">
-                        <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
-                    </tr>
-                </table> -->
                 <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
             </section>
+            <div>-------------------------------------------</div>
         </article>
     </section>
 </section>

@@ -23,6 +23,7 @@
     <section>
         <article ng-repeat="child in children">
         <div>{{child.firstName}} {{child.lastName}}<div>
+        <div>ID: {{child._id}}<div>
         <div><img ng-src="{{child.imageUrl}}" /></div>
         <file-upload submit-func="uploadPhoto" person-id="child._id"></file-upload>
         <div>-------------</div>

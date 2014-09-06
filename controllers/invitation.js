@@ -1,13 +1,23 @@
 var response = require('../lib/serverResponse')
 var Invitation = require('../models/Invitation')
+var PlayDate = require('../models/PlayDate')
 
 module.exports.init = function(app) {
 
     app.post('/invitations', function(req, res) {
-        Invitation.create(req.body)
-        .then(function (newInvitation) {
-            return res.json(newInvitation)
-        }, response.serverError(res))
+        var invite = req.body
+        playDateExists(invite.playDateId)
+        .then(function(hasTruePlaydate) {
+            if (hasTruePlaydate) {
+                return Invitation.create(invite)
+                .then(function(newInvitation) {
+                    return res.json(newInvitation)
+                }, response.serverError(res))
+            }
+            else {
+                return response.standardError(res)
+            }
+        })
     })
 
     app.post('/invitations/:id', function(req, res) {
@@ -23,5 +33,12 @@ module.exports.init = function(app) {
             return res.json(invitations)
         }, response.serverError(res))
     })
+
+    function playDateExists(playDateId) {
+        return PlayDate.findOne({_id: playDateId}).exec()
+        .then(function (playdate) {
+            return !!playdate
+        })
+    }
 
 }
