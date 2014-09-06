@@ -11,8 +11,8 @@ module.exports.init = function(app) {
         var to = req.query.To.replace('+', '').replace(/^1/, '')
         var body = req.query.Body
 
-        if (to.match(twilioNumber)) {
-            getLastConvo(from, function(err, to) {
+        if (from.match(twilioNumber)) {
+            getLastConvo(to, function(err, from) {
                 createMessage(from, to, body)
             })
         } else {
