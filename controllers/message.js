@@ -11,8 +11,8 @@ module.exports.init = function(app) {
         var to = req.query.To.replace('+', '').replace(/^1/, '')
         var body = req.query.Body
 
-        if (from.match(twilioNumber)) {
-            getLastConvo(to, function(err, from) {
+        if (to.match(twilioNumber)) {
+            getLastConvo(from, function(err, to) {
                 createMessage(from, to, body)
             })
         } else {
@@ -67,9 +67,10 @@ module.exports.init = function(app) {
 
 }
 
-function getLastConvo(to, cb) {
-    console.log(to)
-    Message.findOne({from: to}).sort({_id: -1}).exec(function(err, message) {
-        cb(err, message.from)
+function getLastConvo(from, cb) {
+    console.log(from)
+    Message.findOne({to: from}).sort({_id: 1}).exec(function(err, message) {
+        console.log(message)
+        cb(err, message.to)
     })
 }
