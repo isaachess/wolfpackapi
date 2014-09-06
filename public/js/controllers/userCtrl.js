@@ -32,12 +32,6 @@ var userCtrl = function ($scope, apiService, fileUploadService, $q) {
 
     apiService.getUsers().then(function(users) {$scope.users = users})
 
-    function addFriend(user, friend) {
-        if (!user.friends) user.friends = []
-        user.friends.push(friend._id)
-        return user
-    }
-
     function contains(array, item) {
         return array.indexOf(item) >= 0
     }
