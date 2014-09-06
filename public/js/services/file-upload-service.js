@@ -11,10 +11,17 @@ var fileUploadService = function($http) {
         transformRequest: angular.identity
     }
 
-    this.uploadUserPhoto = function (user, files) {
+    this.uploadUserPhoto = function (userId, files) {
         var fd = new FormData()
         fd.append("image", files[0])
-        return $http.post(userEndpoint+'/'+user._id+'/image', fd, options)
+        return $http.post(userEndpoint+'/'+userId+'/image', fd, options)
+        .then(function(rs) {return rs.data})
+    }
+
+    this.uploadChildPhoto = function (childId, files) {
+        var fd = new FormData()
+        fd.append("image", files[0])
+        return $http.post(childEndpoint+'/'+childId+'/image', fd, options)
         .then(function(rs) {return rs.data})
     }
 

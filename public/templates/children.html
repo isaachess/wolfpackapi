@@ -22,7 +22,10 @@
     </section>
     <section>
         <article ng-repeat="child in children">
-        {{child.firstName}} {{child.lastName}}
+        <div>{{child.firstName}} {{child.lastName}}<div>
+        <div><img ng-src="{{child.imageUrl}}" /></div>
+        <file-upload submit-func="uploadPhoto" person-id="child._id"></file-upload>
+        <div>-------------</div>
         <!-- <section ng-hide="editMode">
                 <br>
                 <div ng-repeat="(key, value) in child">{{value}}</div>

@@ -13,11 +13,10 @@ var userCtrl = function ($scope, apiService, fileUploadService) {
         return apiService.updateUser(user)
     }
 
-    $scope.uploadPhoto = function (files) {
-        return fileUploadService.uploadUserPhoto($scope.users[0], files)
-        .then(function(url) {console.log('url',url)})
+    $scope.uploadPhoto = function (userId, files) {
+        return fileUploadService.uploadUserPhoto(userId, files)
     }
 
-    apiService.getUsers().then(function(users) {$scope.users = users; console.log('users',users)})
+    apiService.getUsers().then(function(users) {$scope.users = users})
 
 }

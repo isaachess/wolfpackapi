@@ -26,8 +26,7 @@
                 <div>{{user._id}}</div>
                 <div>{{user.phone}}</div>
                 <div>
-                    <file-upload user="user" on-submit="uploadPhoto"></file-upload>
-                    <!-- <input type="file" id="fileUpload{{$index}}" name="file" onchange="angular.element(this).scope().uploadPhoto(this.files)">Upload picture</input> -->
+                    <file-upload person-id="user._id" submit-func="uploadPhoto"></file-upload>
                 </div>
                 <div><button ng-click="editMode = !editMode">Edit</button></div>
             </section>

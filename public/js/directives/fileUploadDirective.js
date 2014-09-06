@@ -3,15 +3,15 @@ var fileUploadDirective = function(fileUploadService) {
         restrict: 'E',
         template: "<input type='file' name='file' onchange='angular.element(this).scope().uploadPhoto(this.files)' />",
         scope: {
-            user: '='
+            personId: '=',
+            submitFunc: '='
         },
         link: link
     }
 
     function link(scope, el, attrs) {
-        console.log('boom!')
         scope.uploadPhoto = function(files) {
-            return fileUploadService.uploadUserPhoto(scope.user, files)
+            return scope.submitFunc(scope.personId, files)
         }
     }
 }

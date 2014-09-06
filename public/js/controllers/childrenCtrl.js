@@ -1,4 +1,4 @@
-var childrenCtrl = function($scope, apiService) {
+var childrenCtrl = function($scope, apiService, fileUploadService) {
 
     // CHILDREN
     $scope.addChild = function (parentId, firstName, lastName) {
@@ -13,7 +13,11 @@ var childrenCtrl = function($scope, apiService) {
         return apiService.updateChild(child)
     }
 
-    apiService.getChildren().then(function(children) {$scope.children = children})
+    $scope.uploadPhoto = function (childId, files) {
+        return fileUploadService.uploadChildPhoto(childId, files)
+    }
+
+    apiService.getChildren().then(function(children) {$scope.children = children; console.log('children',children)})
     apiService.getUsers().then(function(users) {$scope.users = users})
 
 }

@@ -20,7 +20,6 @@ module.exports.init = function(app) {
     })
 
     app.post('/users/:id/image', multiparty(), function(req, res) {
-        console.log("req", req)
         var file = req.files.image
 
         s3.putFile(file.path, file.originalFilename, { 'x-amz-acl': 'public-read' }, function(err, resp) {
