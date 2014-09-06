@@ -5,6 +5,7 @@ var async = require('async')
 module.exports.init = function(app) {
 
     app.post('/messages', function(req, res) {
+        console.log(req.body)
         res.header('Content-Type', 'text/xml')
         return res.send("<Response><Sms>Sup biscuits</Sms></Response>")
         var data = req.body
