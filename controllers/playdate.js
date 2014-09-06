@@ -24,4 +24,11 @@ module.exports.init = function(app) {
         }, response.serverError(res))
     })
 
+    app.del('/playdates/:id', function(req, res) {
+        PlayDate.remove({_id: req.params.id}).exec()
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
+    })
+
 }
