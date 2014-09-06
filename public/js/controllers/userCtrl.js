@@ -8,8 +8,7 @@ var userCtrl = function ($scope, apiService, fileUploadService, $q) {
         }
         return apiService.addUser(user)
     }
-    $scope.updateUser = function (user, editMode) {
-        editMode = false
+    $scope.updateUser = function (user) {
         return apiService.updateUser(user)
     }
 
