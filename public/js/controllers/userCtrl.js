@@ -21,7 +21,6 @@ var userCtrl = function ($scope, apiService, fileUploadService) {
         return apiService.deleteUser(user)
     }
 
-
     apiService.getUsers().then(function(users) {$scope.users = users})
 
 }

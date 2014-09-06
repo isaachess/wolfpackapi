@@ -1,8 +1,34 @@
 <section>
-    <article ng-repeat="invitation in invitations">
-        <div>{{invitation}}</div>
-        <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>
-        
-    </article>
+    <h1>Invitations</h1>
 
+    <section>
+        <h3>Add Invitation</h3>
+        <table>
+            <tr>
+                <td><label>childId</label></td><td>
+                    <div ng-repeat="child in children">
+                        <input id="childId{{$index}}" name="childId" ng-model="$parent.childId" ng-value="child._id" type="radio"/>
+                        <label for="childId{{$index}}">{{child.firstName}} {{child.lastName}} {{child._id}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>playdate</label></td><td>
+                    <div ng-repeat="playdate in playdates">
+                        <input id="playdate{{$index}}" name="playdate" ng-model="$parent.playdateId" ng-value="playdate._id" type="radio"/>
+                        <label for="playdate{{$index}}">{{playdate}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><label>confirmed</label></td><td><input ng-model="confirmed" type="checkbox"/></td>
+            </tr>
+        </table>
+        <div><button ng-click="addInvitation(childId, playdateId, confirmed)">Add</button></div>
+
+    </section>
+    <section>
+        <div>{{invitation}}</div>
+        <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>   
+    </section>
 </section>

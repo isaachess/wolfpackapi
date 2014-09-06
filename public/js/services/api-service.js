@@ -68,7 +68,6 @@ var apiService = function ($http) {
     this.updateInvitation = function (invitation) {
         return $http.post(invitationEndpoint + "/" + invitation._id, invitation)
     }
-
     this.deleteInivitation = function (invitation) {
         return $http.delete(invitationEndpoint + '/' + invitation._id)
     }
