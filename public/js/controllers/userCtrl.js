@@ -1,4 +1,4 @@
-var userCtrl = function ($scope, apiService, fileUploadService) {
+var userCtrl = function ($scope, apiService, fileUploadService, $q) {
     // USERS
     $scope.addUser = function (phone, firstName, lastName) {
         var user = {
@@ -21,6 +21,19 @@ var userCtrl = function ($scope, apiService, fileUploadService) {
         return apiService.deleteUser(user)
     }
 
+    $scope.makeFriends = function(user, friend) {
+        var friendId = [friend._id]
+        return apiService.addFriends(user, friendId)
+    }
+
+    $scope.areNotFriends = function(user, friend) {
+        return !contains(user.friends, friend._id) || !contains(friend.friends, user._id)
+    }
+
     apiService.getUsers().then(function(users) {$scope.users = users})
+
+    function contains(array, item) {
+        return array.indexOf(item) >= 0
+    }
 
 }
