@@ -21,11 +21,6 @@ var apiService = function ($http) {
         return $http.post(userEndpoint + "/" + user._id, user)
     }
 
-    this.uploadUserPhoto = function(user, photo) {
-        return $http.post(userEndpoint+'/'+user._id, photo)
-        .then(function(rs) { return rs.data })
-    }
-
     //CHILDREN
     this.getChildren = function () {
         return getData($http.get(childEndpoint))
