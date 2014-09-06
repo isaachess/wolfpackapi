@@ -7,6 +7,7 @@ var invitationsCtrl = function($scope, apiService) {
             playdateId: playdateId,
             confirmed: confirmed,
         }
+        console.log("invitation", invitation)
         return apiService.addInvitation(invitation)
 
     }
