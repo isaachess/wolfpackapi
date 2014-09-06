@@ -62,7 +62,7 @@ function sendToTwillio(message, cb) {
 }
 
 function sendToApp(message, cb) {
-    //do nothing for now
+    cb()
 }
 
 module.exports =  mongoose.model('Message', MessageSchema)
