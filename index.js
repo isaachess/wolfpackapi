@@ -42,6 +42,7 @@ require('./controllers/user').init(app)
 require('./controllers/child').init(app)
 require('./controllers/playdate').init(app)
 require('./controllers/invitation').init(app)
+require('./controllers/message').init(app)
 
 app.get('*', function(req, res) {
     res.sendFile(__dirname+'/public/index.html')
