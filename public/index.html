@@ -1,136 +1,24 @@
 <!doctype html>
 <html ng-app="admin">
     <head>
+        <base href="/">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
+        <script src="/admin/js/lib/angular-ui-router.min.js"></script>
         
         <!-- Services -->
-        <script src="js/services/api-service.js"></script>
+        <script src="/admin/js/services/api-service.js"></script>
         <!-- Controllers -->
-        <script src="js/controllers/users.js"></script>
-        
-        <script src="js/main.js"></script>
+        <script src="/admin/js/controllers/oldStuffCtrl.js"></script>
+
+        <script src="/admin/js/app.js"></script>
     </head>
 
+
     <body>
-        <section ng-controller="userControl">
-            <section>
-                <a ng-click="page = 'users'">Users</a> <a ng-click="page = 'children'">Children</a>
-            </section>
-
-            <section ng-show="page == 'users'">
-                <h1>Users</h1>
-                <section>
-                    <h3>Add User</h3>
-                    <table>
-                        <tr>
-                            <td><label>phone</label></td><td><input ng-model="phone"/></td>
-                        </tr>
-                        <tr>
-                            <td><label>firstName</label></td><td><input ng-model="firstName"/></td>
-                        </tr>
-                        <tr>
-                            <td><label>lastName</label></td><td><input ng-model="lastName"/></td>
-                        </tr>
-                    </table>
-                    <div><button ng-click="addUser(phone, firstName, lastName)">Add!</button></div>
-                </section>
-                
-                <section>
-                    <article ng-repeat="user in users | filter:notDeleted">
-                        <section ng-hide="editMode">
-                            <br>
-                            <div ng-repeat="(key, value) in user">{{value}}</div>
-
-                          <!--    <div>{{user.firstName}} {{user.lastName}}</div>
-                            <div>{{user._id}}</div>
-                            <div>{{user.phone}}</div> -->
-                            <div><button ng-click="editMode = !editMode">Edit</button></div>
-                        </section>
-                        <section ng-show="editMode">
-                           <!--  <table>
-                                <tr>
-                                    <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>_id</label></td><td><input ng-model="user._id"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
-                                </tr>
-                            </table> -->
-
-                            <table>
-                                <tr ng-repeat="(key, value) in user">
-                                    <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
-                                </tr>
-                            </table>
-                            <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
-                        </section>
-                    </article>
-                </section>
-            </section>
-
-
-            <section ng-show="page == 'children'">
-                <h1>Children</h1>
-                <section>
-                    <h3>Add Child</h3>
-                    <table>
-                        <tr>
-                            <td><label>parentId</label></td><td>
-                                <div ng-repeat="user in users">
-                                    <input id="parentId{{$index}}" name="parentI" ng-model="$parent.childParentId" ng-value="user._id" type="radio"/>
-                                    <label for="parentId{{$index}}">{{user.firstName}} {{user.lastName}} {{user._id}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label>firstName</label></td><td><input ng-model="childFirstName"/></td>
-                        </tr>
-                        <tr>
-                            <td><label>lastName</label></td><td><input ng-model="childLastName"/></td>
-                        </tr>
-                    </table>
-                    <div><button ng-click="addChild(childParentId, childFirstName, childLastName)">Add!</button></div>
-                </section>
-                <section>
-                    <article ng-repeat="child in children">
-                    <!-- <section ng-hide="editMode">
-                            <br>
-                            <div ng-repeat="(key, value) in child">{{value}}</div>
-
-                            <div><button ng-click="editMode = !editMode">Edit</button></div>
-                        </section>
-                        <section ng-show="editMode">
-                            <table>
-                                <tr>
-                                    <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>_id</label></td><td><input ng-model="user._id"/></td>
-                                </tr>
-                                <tr>
-                                    <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
-                                </tr>
-                            </table>
-
-                            <table>
-                                <tr ng-repeat="(key, value) in user">
-                                    <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
-                                </tr>
-                            </table> -->
-                    </article>
-                </section>
-
-            </section>
-
-        </section>
+        <div ui-view></div>
+        <a ui-sref="state1">State 1</a>
+        <a ui-sref="state2">State 2</a>
+        <a ui-sref="oldStuff">OldStuff</a>
 
     </body>
 </html>
