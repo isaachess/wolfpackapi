@@ -69,6 +69,7 @@ module.exports.init = function(app) {
 }
 
 function getLastConvo(from, cb) {
+    console.log(from)
     Message.findOne({to: from}).sort({_id: -1}).exec(function(err, message) {
         cb(err, message.to)
     })
