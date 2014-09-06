@@ -21,19 +21,38 @@ var apiService = function ($http) {
         return $http.post(userEndpoint + "/" + user._id, user)
     }
 
-
+    //CHILDREN
     this.getChildren = function () {
         return getData($http.get(childEndpoint))
     }
     this.addChild = function (child) {
         return $http.post(childEndpoint, child)
     }
+    this.updateChild = function (child) {
+        return $http.post(childEndpoint + "/" + child._id, child)
+    }
 
+
+    //PLAYDATES
     this.getPlaydates = function () {
         return getData($http.get(playdateEndpoint))
     }
+    this.addPlaydate = function (playdate) {
+        return $http.post(playdateEndpoint, playdate)
+    }
+    this.updateChild = function (playdate) {
+        return $http.post(playdateEndpoint + "/" + playdate._id, playdate)
+    }
+
+    //INVITATIONS
     this.getInvitations = function () {
         return getData($http.get(invitationEndpoint))
+    }
+    this.addInvitation = function (invitation) {
+        return $http.post(invitationEndpoint, invitation)
+    }
+    this.updateInvitation = function (invitation) {
+        return $http.post(invitationEndpoint + "/" + invitation._id, invitation)
     }
 
 }
