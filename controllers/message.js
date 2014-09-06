@@ -1,4 +1,4 @@
-var twilioNumber = '18019198844'
+var twilioNumber = '8019198844'
 
 var Message = require('../models/Message')
 var User = require('../models/User')
@@ -7,7 +7,6 @@ var async = require('async')
 module.exports.init = function(app) {
 
     app.get('/messages', function(req, res) {
-        console.log(req.query)
         var from = req.query.From.replace('+', '').replace(/^1/, '')
         var to = req.query.To.replace('+', '').replace(/^1/, '')
         var body = req.query.Body
