@@ -1,5 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var twilioNumber = '18019198844'
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
 
 var MessageSchema = new Schema({
 
@@ -12,7 +14,7 @@ var MessageSchema = new Schema({
 
     from: String,
 
-    message: {
+    body: {
         type: String,
         required: true
     },
@@ -48,7 +50,15 @@ MessageSchema.pre('save', function(next) {
 })
 
 function sendToTwillio(message, cb) {
-    //send it to phone
+    console.log("GET IT")
+    client.sendMessage({
+        to: message.to,
+        from: twilioNumber,
+        body: message.body
+    }, function(err, result) {
+        console.log(arguments)
+        cb(err, result)
+    })
 }
 
 function sendToApp(message, cb) {
