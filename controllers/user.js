@@ -49,20 +49,40 @@ module.exports.init = function(app) {
     })
 
     app.post('/users/:userId/friends', function(req, res) {
-        User.update({_id: req.params.userId}, {
-            $addToSet: {
-                frends: {
-                    $each: req.params.friendIds
-                }
-            }
-        }, function(err) {
+        async.parallel([
+
+            updateMainFriend,
+
+            updateOtherFriends
+
+        ], function(err) {
             if (err) {
                 console.log(err)
-                return res.json({ok: false}, 500)
+                return res.json({ok: false})
             }
-
             res.json({ok: true})
         })
+
+        function updateMainFriend(cb) {
+            updateFriends(req.params.userId, req.body.friendIds, cb)
+        }
+
+        function updateOtherFriends(cb) {
+            async.each(req.body.friendIds, function(friendId, done) {
+                updateFriends(friendId, [req.params.userId], done)
+            }, cb)
+        }
+
+        function updateFriends(_id, friendIds, cb) {
+            User.update({_id: _id}, {
+                $addToSet: {
+                    friends: {
+                        $each: friendIds
+                    }
+                }
+            }, cb)
+        }
+
     })
 
     app.get('/users/:userId/friends', function(req, res) {

@@ -25,6 +25,9 @@ var apiService = function ($http) {
         return $http.delete(userEndpoint + '/' + user._id)
     }
 
+    this.addFriends = function(user, friendIds) {
+        return $http.post(userEndpoint + '/' + user._id + '/friends', {friendIds:friendIds})
+    }
 
     //CHILDREN
     this.getChildren = function () {

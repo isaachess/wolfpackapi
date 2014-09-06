@@ -19,3 +19,15 @@ app.service("fileUploadService", fileUploadService)
 
 // Directives
 app.directive('fileUpload', fileUploadDirective)
+
+// Filters
+app.filter('userName', function() {
+    return function(id, users) {
+        var ids = users.map(function(user) {
+            return user._id
+        })
+        var index = ids.indexOf(id)
+        var user = users[index]
+        return user.firstName + user.lastName
+    }
+})

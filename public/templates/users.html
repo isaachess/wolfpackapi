@@ -18,7 +18,7 @@
     
     <section>
         <article ng-repeat="user in users | filter:notDeleted">
-            <section ng-hide="editMode">
+            <section>
                 <br>
                 <div><img ng-src="{{user.imageUrl}}" /></div>
                 <div>{{user.firstName}} {{user.lastName}}</div>
@@ -27,6 +27,8 @@
                 <div>
                     <file-upload person-id="user._id" submit-func="uploadPhoto"></file-upload>
                 </div>
+                <div><b>Current Friends</b></div>
+                <div ng-repeat="currentFriend in user.friends">{{currentFriend | userName:users}}</div>
                 <div><button ng-click="editMode = !editMode">Edit</button></div>
                 <div><button ng-click="deleteUser(user)">Delete</button></div>
             </section>
@@ -45,6 +47,13 @@
                         <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
                     </tr>
                 </table>
+                <section>
+                    <div><b>Make Friends</b></div>
+                    <div ng-repeat="newFriend in users">
+                        <span><button ng-click="makeFriends(user, newFriend)">Make friends</button></span>
+                        <span>{{newFriend.firstName}} {{newFriend.lastName}}</span>
+                    </div>
+                </section>
                 <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
             </section>
             <div>-------------------------------------------</div>
