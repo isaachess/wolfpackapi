@@ -33,6 +33,13 @@ module.exports.init = function(app) {
 
     })
 
+    app.del('/children/:id', function(req, res) {
+        Child.remove({_id: req.params.id}).exec()
+        .then(function() {
+            return res.json({ok: true})
+        }, response.serverError(res))
+    })
+
     app.get('/children', function(req, res) {
         Child.find({}).exec()
         .then(function (children) {
