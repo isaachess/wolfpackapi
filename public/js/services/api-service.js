@@ -21,6 +21,11 @@ var apiService = function ($http) {
         return $http.post(userEndpoint + "/" + user._id, user)
     }
 
+    this.deleteUser = function (user) {
+        return $http.delete(userEndpoint + '/' + user._id)
+    }
+
+
     //CHILDREN
     this.getChildren = function () {
         return getData($http.get(childEndpoint))
@@ -30,6 +35,10 @@ var apiService = function ($http) {
     }
     this.updateChild = function (child) {
         return $http.post(childEndpoint + "/" + child._id, child)
+    }
+
+    this.deleteChild = function (child) {
+        return $http.delete(childEndpoint + '/' + child._id)
     }
 
 
@@ -44,6 +53,11 @@ var apiService = function ($http) {
         return $http.post(playdateEndpoint + "/" + playdate._id, playdate)
     }
 
+    this.deletePlaydate = function (playdate) {
+        return $http.delete(playdateEndpoint + '/' + playdate._id)
+    }
+
+
     //INVITATIONS
     this.getInvitations = function () {
         return getData($http.get(invitationEndpoint))
@@ -53,6 +67,10 @@ var apiService = function ($http) {
     }
     this.updateInvitation = function (invitation) {
         return $http.post(invitationEndpoint + "/" + invitation._id, invitation)
+    }
+
+    this.deleteInivitation = function (invitation) {
+        return $http.delete(invitationEndpoint + '/' + invitation._id)
     }
 
 }

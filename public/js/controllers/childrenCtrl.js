@@ -17,6 +17,10 @@ var childrenCtrl = function($scope, apiService, fileUploadService) {
         return fileUploadService.uploadChildPhoto(childId, files)
     }
 
+    $scope.deleteChild = function (child) {
+        return apiService.deleteChild(child)
+    }
+
     apiService.getChildren().then(function(children) {$scope.children = children})
     apiService.getUsers().then(function(users) {$scope.users = users})
 

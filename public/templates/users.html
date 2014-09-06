@@ -28,6 +28,7 @@
                     <file-upload person-id="user._id" submit-func="uploadPhoto"></file-upload>
                 </div>
                 <div><button ng-click="editMode = !editMode">Edit</button></div>
+                <div><button ng-click="deleteUser(user)">Delete</button></div>
             </section>
             <section ng-show="editMode">
                 <table>

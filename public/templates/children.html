@@ -22,38 +22,12 @@
     </section>
     <section>
         <article ng-repeat="child in children">
-        <div>{{child.firstName}} {{child.lastName}}<div>
-        <div>ID: {{child._id}}<div>
-        <div><img ng-src="{{child.imageUrl}}" /></div>
-        <file-upload submit-func="uploadPhoto" person-id="child._id"></file-upload>
-        <div>-------------</div>
-        <!-- <section ng-hide="editMode">
-                <br>
-                <div ng-repeat="(key, value) in child">{{value}}</div>
-
-                <div><button ng-click="editMode = !editMode">Edit</button></div>
-            </section>
-            <section ng-show="editMode">
-                <table>
-                    <tr>
-                        <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
-                    </tr>
-                    <tr>
-                        <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
-                    </tr>
-                    <tr>
-                        <td><label>_id</label></td><td><input ng-model="user._id"/></td>
-                    </tr>
-                    <tr>
-                        <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
-                    </tr>
-                </table>
-
-                <table>
-                    <tr ng-repeat="(key, value) in user">
-                        <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
-                    </tr>
-                </table> -->
+            <div>{{child.firstName}} {{child.lastName}}<div>
+            <div>ID: {{child._id}}<div>
+            <div><img ng-src="{{child.imageUrl}}" /></div>
+            <file-upload submit-func="uploadPhoto" person-id="child._id"></file-upload>
+            <button ng-click="deleteChild(child)">Delete</button>
+            <div>-------------</div>
         </article>
     </section>
 
