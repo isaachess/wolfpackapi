@@ -4,8 +4,8 @@ var async = require('async')
 
 module.exports.init = function(app) {
 
-    app.get('/messages', function(req, res) {
-        console.log(req.query)
+    app.post('/messages', function(req, res) {
+        console.log(req.param('Body'))
         res.header('Content-Type', 'text/xml')
         return res.send("<Response><Sms>Sup biscuits</Sms></Response>")
         var data = req.body
