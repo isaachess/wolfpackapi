@@ -47,9 +47,12 @@ module.exports.init = function(app) {
                 else
                     type = 'phone2phone'
 
+                from = results.from ? results.from.phone : from
+                to = results.to ? results.to.phone : to
+
                 var message = new Message({
-                    from: results.from || from,
-                    to: results.to || to,
+                    from: from,
+                    to: to,
                     body: body,
                     type: type
                 })
@@ -68,9 +71,7 @@ module.exports.init = function(app) {
 }
 
 function getLastConvo(from, cb) {
-    console.log(from)
     Message.findOne({to: from}).sort({_id: -1}).exec(function(err, message) {
-        console.log(message)
         cb(err, message.from)
     })
 }
