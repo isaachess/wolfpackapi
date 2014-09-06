@@ -20,6 +20,7 @@ module.exports.init = function(app) {
         }
 
         function createMessage(from, to, body) {
+            console.log("Creating message")
             async.parallel({
 
                 to: function(cb) {
@@ -33,8 +34,10 @@ module.exports.init = function(app) {
             }, function(err, results) {
                 if (err) {
                     console.log(err)
-                    res.json({ok: false})
+                    return res.json({ok: false})
                 }
+
+                console.log("got results", results)
 
                 var type = ''
 
