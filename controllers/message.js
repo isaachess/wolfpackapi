@@ -8,8 +8,8 @@ module.exports.init = function(app) {
 
     app.get('/messages', function(req, res) {
         console.log(req.query)
-        var from = req.query.From.replace('+', '')
-        var to = req.query.To.replace('+', '')
+        var from = req.query.From.replace('+', '').replace(/^1/, '')
+        var to = req.query.To.replace('+', '').replace(/^1/, '')
         var body = req.query.Body
 
         if (to.match(twilioNumber)) {
