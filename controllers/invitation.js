@@ -9,7 +9,8 @@ module.exports.init = function(app) {
         playDateExists(invite.playDateId)
         .then(function(hasTruePlaydate) {
             if (hasTruePlaydate) {
-                return Invitation.create(invite)
+                var newInvitation = new Invitation(invite)
+                newInvitation.save().exec()
                 .then(function(newInvitation) {
                     return res.json(newInvitation)
                 }, response.serverError(res))
