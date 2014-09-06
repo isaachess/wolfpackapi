@@ -1,0 +1,55 @@
+<section>
+    <h1>Users</h1>
+    <section>
+        <h3>Add User</h3>
+        <table>
+            <tr>
+                <td><label>phone</label></td><td><input ng-model="phone"/></td>
+            </tr>
+            <tr>
+                <td><label>firstName</label></td><td><input ng-model="firstName"/></td>
+            </tr>
+            <tr>
+                <td><label>lastName</label></td><td><input ng-model="lastName"/></td>
+            </tr>
+        </table>
+        <div><button ng-click="addUser(phone, firstName, lastName)">Add!</button></div>
+    </section>
+    
+    <section>
+        <article ng-repeat="user in users | filter:notDeleted">
+            <section ng-hide="editMode">
+                <br>
+                <!-- <div ng-repeat="(key, value) in user">{{value}}</div> -->
+
+                 <div>{{user.firstName}} {{user.lastName}}</div>
+                <div>{{user._id}}</div>
+                <div>{{user.phone}}</div>
+                <div><button ng-click="editMode = !editMode">Edit</button></div>
+            </section>
+            <section ng-show="editMode">
+                <table>
+                    <tr>
+                        <td><label>firstName</label></td><td><input ng-model="user.firstName"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>lastName</label></td><td><input ng-model="user.lastName"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>_id</label></td><td><input ng-model="user._id"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>phone</label></td><td><input ng-model="user.phone"/></td>
+                    </tr>
+                </table>
+
+<!--                 <table>
+                    <tr ng-repeat="(key, value) in user">
+                        <td><label>{{key}}</label></td><td><input ng-model="user[key]"/></td>
+                    </tr>
+                </table> -->
+                <div><button ng-click="editMode = !editMode; updateUser(user, editMode)">Save</button></div>
+            </section>
+        </article>
+    </section>
+</section>

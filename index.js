@@ -37,13 +37,14 @@ app.get('/', function (req, res) {
     })
 })
 
-app.get('*', function(req, res) {
-    res.sendFile(__dirname+'/public/index.html')
-})
 
 require('./controllers/user').init(app)
 require('./controllers/child').init(app)
 require('./controllers/playdate').init(app)
 require('./controllers/invitation').init(app)
+
+app.get('*', function(req, res) {
+    res.sendFile(__dirname+'/public/index.html')
+})
 
 app.listen(process.env.PORT || 1337)

@@ -9,16 +9,20 @@
         <script src="/admin/js/services/api-service.js"></script>
         <!-- Controllers -->
         <script src="/admin/js/controllers/oldStuffCtrl.js"></script>
+        <script src="/admin/js/controllers/userCtrl.js"></script>
+        <script src="/admin/js/controllers/childrenCtrl.js"></script>
+        <script src="/admin/js/controllers/playDatesCtrl.js"></script>
+        <script src="/admin/js/controllers/invitationsCtrl.js"></script>
 
         <script src="/admin/js/app.js"></script>
     </head>
 
 
     <body>
+        <a ui-sref="users">Users</a>
+        <a ui-sref="children">Children</a>
+        <a ui-sref="playDates">Playdates</a>
+        <a ui-sref="invitations">Invitations</a>
         <div ui-view></div>
-        <a ui-sref="state1">State 1</a>
-        <a ui-sref="state2">State 2</a>
-        <a ui-sref="oldStuff">OldStuff</a>
-
     </body>
 </html>

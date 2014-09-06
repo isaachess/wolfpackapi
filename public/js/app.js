@@ -7,9 +7,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise("/admin/state1")
 
     $stateProvider
-        .state('state1', {url:'/admin/state1', templateUrl: '/admin/templates/state1.html'})
         .state('users', {url:'/admin/users', templateUrl:'/admin/templates/users.html', controller:userCtrl})
-        .state('oldStuff', {url:'/admin/oldStuff', templateUrl: '/admin/templates/oldStuff.html', controller:oldStuffCtrl})
+        .state('oldStuff', {url:'/admin/oldstuff', templateUrl: '/admin/templates/oldStuff.html', controller:oldStuffCtrl})
+        .state('playDates', {url:'/admin/playdates', templateUrl: '/admin/templates/playDates.html', controller:playDatesCtrl})
+        .state('invitations', {url:'/admin/invitations', templateUrl: '/admin/templates/invitations.html', controller:invitationsCtrl})
+        .state('children', {url:'/admin/children', templateUrl: '/admin/templates/children.html', controller:childrenCtrl})
 })
 
 app.service("apiService", apiService)
