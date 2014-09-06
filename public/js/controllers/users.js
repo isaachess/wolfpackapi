@@ -2,12 +2,13 @@ var userControl = function ($scope, apiService) {
 
     $scope.stuff = "more stuff"
     $scope.page = "users"
-    $scope.database;
     $scope.users;
     $scope.children;
+    $scope.playdates;
+    $scope.invitations;
 
 
-    //USERS
+    // USERS
     $scope.addUser = function (phone, firstName, lastName) {
         var user = {
             phone: phone,
@@ -21,11 +22,7 @@ var userControl = function ($scope, apiService) {
         return apiService.updateUser(user)
     }
 
-    $scope.notDeleted = function (object) {
-        return !object.deleted
-    }
-
-    //CHILDREN
+    // CHILDREN
     $scope.addChild = function (parentId, firstName, lastName) {
         var child = {
             parentId: parentId,
@@ -35,10 +32,26 @@ var userControl = function ($scope, apiService) {
         return apiService.addChild(child)
     }
 
-    apiService.getDatabase().then(function(db) {$scope.database = db})
+    $scope.updateChild = function (child) {
+        return apiService.updateChild(child)
+    }
+
+    // PLAYDATES
+
+
+    // INVITATIONS
+
+
+    // FILTERS 
+    $scope.notDeleted = function (object) {
+        return !object.deleted
+    }
+
 
     apiService.getUsers().then(function(users) {$scope.users = users})
     apiService.getChildren().then(function(children) {$scope.children = children})
+    apiService.getPlaydates().then(function(playdates) {$scope.playdates = playdates})
+    apiService.getInvitations().then(function(invitations) {$scope.invitations = invitations})
 
 }
 
