@@ -48,7 +48,13 @@
 
     </section>
     <section>
-        <div>{{invitations}}</div>
-        <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>   
+        <article ng-repeat="invitation in invitations">
+            <div>ID: {{invitation._id}}</div>
+            <div>Child ID: {{invitation.childId}}</div>
+            <div>PlayDate ID: {{invitation.playDateId}}</div>
+            <div>Confirmed: {{invitation.confirmed}}</div>
+            <div><button ng-click="deleteInvitation(invitation)">Delete</button></div>
+            <div>-----------------------</div>
+        </article> 
     </section>
 </section>
