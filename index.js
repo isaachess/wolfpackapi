@@ -48,6 +48,10 @@ require('./controllers/playdate').init(app)
 require('./controllers/invitation').init(app)
 require('./controllers/message').init(app)
 
+app.get('/sekret', function(req, res) {
+    res.sendFile(__dirname+'/public/sekret.html')
+})
+
 app.get('*', function(req, res) {
     res.sendFile(__dirname+'/public/index.html')
 })

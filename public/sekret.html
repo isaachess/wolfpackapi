@@ -1,0 +1,28 @@
+<!Doctype html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+$(function() {
+  var $select = $('select')
+  $.get('/users', function(users) {
+    users.forEach(function(user) {
+      $select.append('<option value="' + user.phone + '">' + user.firstName + '</option>')
+    })
+  })
+})
+</script>
+<form action="/messages" method="GET">
+  <select name="To">
+  </select>
+  <br />
+  <textarea cols="50" rows="10" name="Body">
+  </textarea>
+  <br />
+  <input type="hidden" name="From" value="8018142371" />
+  <input type="submit">
+</form>
+</body>
+</html>
