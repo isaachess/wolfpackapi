@@ -19,13 +19,14 @@ module.exports.init = function(app) {
         }, response.serverError(res))
     })
 
-    app.post('/users/:userId/image', multiparty(), function(req, res) {
+    app.post('/users/:id/image', multiparty(), function(req, res) {
+        console.log("req", req)
         var file = req.files.image
 
         s3.putFile(file.path, file.originalFilename, { 'x-amz-acl': 'public-read' }, function(err, resp) {
             var url = resp.req.url
 
-            User.update({_id: req.params.userId}, {$set: {imageUrl: url}}).exec()
+            User.update({_id: req.params.id}, {$set: {imageUrl: url}}).exec()
             .then(function() {
                 res.json({ok: true, url: url})
             }, response.serverError(res))

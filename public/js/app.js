@@ -15,3 +15,7 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 })
 
 app.service("apiService", apiService)
+app.service("fileUploadService", fileUploadService)
+
+// Directives
+app.directive('fileUpload', fileUploadDirective)

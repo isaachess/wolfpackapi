@@ -21,10 +21,14 @@
             <section ng-hide="editMode">
                 <br>
                 <!-- <div ng-repeat="(key, value) in user">{{value}}</div> -->
-
-                 <div>{{user.firstName}} {{user.lastName}}</div>
+                <div><img ng-src="{{user.imageUrl}}" /></div>
+                <div>{{user.firstName}} {{user.lastName}}</div>
                 <div>{{user._id}}</div>
                 <div>{{user.phone}}</div>
+                <div>
+                    <file-upload user="user" on-submit="uploadPhoto"></file-upload>
+                    <!-- <input type="file" id="fileUpload{{$index}}" name="file" onchange="angular.element(this).scope().uploadPhoto(this.files)">Upload picture</input> -->
+                </div>
                 <div><button ng-click="editMode = !editMode">Edit</button></div>
             </section>
             <section ng-show="editMode">

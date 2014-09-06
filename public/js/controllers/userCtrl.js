@@ -1,4 +1,4 @@
-var userCtrl = function ($scope, apiService) {
+var userCtrl = function ($scope, apiService, fileUploadService) {
     // USERS
     $scope.addUser = function (phone, firstName, lastName) {
         var user = {
@@ -13,6 +13,11 @@ var userCtrl = function ($scope, apiService) {
         return apiService.updateUser(user)
     }
 
-    apiService.getUsers().then(function(users) {$scope.users = users})
+    $scope.uploadPhoto = function (files) {
+        return fileUploadService.uploadUserPhoto($scope.users[0], files)
+        .then(function(url) {console.log('url',url)})
+    }
+
+    apiService.getUsers().then(function(users) {$scope.users = users; console.log('users',users)})
 
 }
